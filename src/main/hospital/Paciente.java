@@ -72,14 +72,14 @@ public class Paciente {
         return nome + ";" + cpf + ";" + idade + ";" + possuiPlanoSaude + ";" + descontoPlano;
     }
 
-public static Paciente fromCSV(String linha) {
-    String[] dados = linha.split(";");
-    String nome = dados[0];
-    long cpf = Long.parseLong(dados[1]);
-    int idade = Integer.parseInt(dados[2]);
-    boolean possuiPlano = Boolean.parseBoolean(dados[3]);
-    double desconto = Double.parseDouble(dados[4]);
-    return new Paciente(nome, cpf, idade, possuiPlano, desconto);
-}
+    public static Paciente fromCSV(String linha) {
+        String[] dados = linha.split(";");
+        String nome = dados[0];
+        long cpf = Long.parseLong(dados[1]);
+        int idade = Integer.parseInt(dados[2]);
+        boolean possuiPlano = Boolean.parseBoolean(dados[3]);
+        double desconto = Double.parseDouble(dados[4]);
+        return new Paciente(nome, cpf, idade, possuiPlano, desconto);
+    }
 
 }
