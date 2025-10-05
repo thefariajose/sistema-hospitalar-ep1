@@ -66,4 +66,18 @@ public class Medico {
                 ", consultasAgendadas=" + agenda.size() +
                 '}';
     }
+
+    public String toCSV() {
+    return nome + ";" + especialidade + ";" + crm + ";" + custoConsulta;
+}
+
+    public static Medico fromCSV(String linha) {
+        String[] dados = linha.split(";");
+        String nome = dados[0];
+        String especialidade = dados[1];
+        int crm = Integer.parseInt(dados[2]);
+        double custo = Double.parseDouble(dados[3]);
+        return new Medico(nome, especialidade, crm, custo);
+    }
+
 }
