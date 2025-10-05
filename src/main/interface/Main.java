@@ -91,7 +91,7 @@ public class Main {
             linhasPacientes.add(p.toCSV());
         }
 
-        ArquivoUtils.salvarEmCSV("pacientes.csv", linhasPacientes);
+        ArquivoUtils.salvarEmCSV("docs/pacientes.csv", linhasPacientes);
     }
 
 
@@ -118,7 +118,7 @@ public class Main {
         for (Medico m : medicos) {
             linhasMedicos.add(m.toCSV());
         }
-        ArquivoUtils.salvarEmCSV("medicos.csv", linhasMedicos);
+        ArquivoUtils.salvarEmCSV("docs/medicos.csv", linhasMedicos);
     }
 
     //Terceira função: Exibição de relatórios
