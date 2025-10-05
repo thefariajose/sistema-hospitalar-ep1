@@ -17,10 +17,10 @@ public class Main {
         ArrayList<Internacao> internacoes = new ArrayList<>();
 
         // Carregar pacientes e médicos salvos
-        for (String linha : ArquivoUtils.carregarDeCSV("pacientes.csv")) {
+        for (String linha : ArquivoUtils.carregarDeCSV("docs/pacientes.csv")) {
             pacientes.add(Paciente.fromCSV(linha));
         }
-        for (String linha : ArquivoUtils.carregarDeCSV("medicos.csv")) {
+        for (String linha : ArquivoUtils.carregarDeCSV("docs/medicos.csv")) {
             medicos.add(Medico.fromCSV(linha));
         }
 

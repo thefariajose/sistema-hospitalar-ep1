@@ -17,14 +17,14 @@ public class ArquivoUtils {
 
 
 
-public static List<String> carregarDeCSV(String nomeArquivo) {
+    public static List<String> carregarDeCSV(String caminhoArquivo) {
         List<String> linhas = new ArrayList<>();
-        File arquivo = new File(nomeArquivo);
+        File arquivo = new File(caminhoArquivo);
         if (!arquivo.exists()) {
             return linhas; // retorna lista vazia se não existir
         }
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(nomeArquivo))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))) {
             String linha;
             while ((linha = reader.readLine()) != null) {
                 linhas.add(linha);
