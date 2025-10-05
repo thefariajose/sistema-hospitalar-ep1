@@ -2,7 +2,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import main.utils.ArquivoUtils;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +15,15 @@ public class Main {
         ArrayList<Medico> medicos = new ArrayList<>();
         // Arraylist de internações
         ArrayList<Internacao> internacoes = new ArrayList<>();
+
+        // Carregar pacientes e médicos salvos
+        for (String linha : ArquivoUtils.carregarDeCSV("pacientes.csv")) {
+            pacientes.add(Paciente.fromCSV(linha));
+        }
+        for (String linha : ArquivoUtils.carregarDeCSV("medicos.csv")) {
+            medicos.add(Medico.fromCSV(linha));
+        }
+
         Scanner scanner = new Scanner(System.in);
 
         int opcao;
@@ -52,15 +64,36 @@ public class Main {
 
         System.out.print("Digite o CPF do paciente: ");
         long cpf = scanner.nextLong();
-        scanner.nextLine();
+        scanner.nextLine(); // consumir quebra de linha
 
         System.out.print("Digite a idade do paciente: ");
         int idade = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); // consumir quebra de linha
 
-        pacientes.add(new Paciente(nome, cpf, idade));
+        System.out.print("O paciente possui plano de saúde? (S/N): ");
+        String resposta = scanner.nextLine();
+    
+        boolean possuiPlanoSaude = false;
+        double descontoPlano = 0.0;
+
+        if (resposta.equalsIgnoreCase("S")) {
+            possuiPlanoSaude = true;
+            descontoPlano = 0.2;
+        }
+
+        Paciente novoPaciente = new Paciente(nome, cpf, idade, possuiPlanoSaude, descontoPlano);
+        pacientes.add(novoPaciente);
         System.out.println("Paciente cadastrado com sucesso!");
+
+        // salvar pacientes em CSV
+        List<String> linhasPacientes = new ArrayList<>();
+        for (Paciente p : pacientes) {
+            linhasPacientes.add(p.toCSV());
+        }
+
+        ArquivoUtils.salvarEmCSV("pacientes.csv", linhasPacientes);
     }
+
 
     //Segunda função: Cadastro de médicos
     private static void cadastrarMedico(Scanner scanner, ArrayList<Medico> medicos) {
@@ -79,6 +112,13 @@ public class Main {
 
         medicos.add(new Medico(nome, especialidade, crm, custoConsulta));
         System.out.println("Médico cadastrado com sucesso!");
+
+        // Salvar médicos
+        List<String> linhasMedicos = new ArrayList<>();
+        for (Medico m : medicos) {
+            linhasMedicos.add(m.toCSV());
+        }
+        ArquivoUtils.salvarEmCSV("medicos.csv", linhasMedicos);
     }
 
     //Terceira função: Exibição de relatórios
