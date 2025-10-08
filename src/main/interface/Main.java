@@ -43,7 +43,7 @@ public class Main {
             scanner.nextLine();
 
             switch (opcao) {
-                case 1 -> cadastrarPaciente(scanner, pacientes);
+                case 1 -> Paciente.cadastrarPaciente(scanner, pacientes);
                 case 2 -> cadastrarMedico(scanner, medicos);
                 case 3 -> agendarConsulta(scanner, pacientes, medicos);
                 case 4 -> internarOuDarAlta(scanner, pacientes, medicos, internacoes);
@@ -58,41 +58,6 @@ public class Main {
     }
 
     //Primeira função: Cadastro de pacientes
-    private static void cadastrarPaciente(Scanner scanner, ArrayList<Paciente> pacientes) {
-        System.out.print("Digite o nome do paciente: ");
-        String nome = scanner.nextLine();
-
-        System.out.print("Digite o CPF do paciente: ");
-        long cpf = scanner.nextLong();
-        scanner.nextLine(); // consumir quebra de linha
-
-        System.out.print("Digite a idade do paciente: ");
-        int idade = scanner.nextInt();
-        scanner.nextLine(); // consumir quebra de linha
-
-        System.out.print("O paciente possui plano de saúde? (S/N): ");
-        String resposta = scanner.nextLine();
-    
-        boolean possuiPlanoSaude = false;
-        double descontoPlano = 0.0;
-
-        if (resposta.equalsIgnoreCase("S")) {
-            possuiPlanoSaude = true;
-            descontoPlano = 0.2;
-        }
-
-        Paciente novoPaciente = new Paciente(nome, cpf, idade, possuiPlanoSaude, descontoPlano);
-        pacientes.add(novoPaciente);
-        System.out.println("Paciente cadastrado com sucesso!");
-
-        // salvar pacientes em CSV
-        List<String> linhasPacientes = new ArrayList<>();
-        for (Paciente p : pacientes) {
-            linhasPacientes.add(p.toCSV());
-        }
-
-        ArquivoUtils.salvarEmCSV("docs/pacientes.csv", linhasPacientes);
-    }
 
 
     //Segunda função: Cadastro de médicos
