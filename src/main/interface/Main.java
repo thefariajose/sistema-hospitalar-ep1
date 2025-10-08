@@ -2,7 +2,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import main.utils.ArquivoUtils;
@@ -44,8 +43,8 @@ public class Main {
 
             switch (opcao) {
                 case 1 -> Paciente.cadastrarPaciente(scanner, pacientes);
-                case 2 -> cadastrarMedico(scanner, medicos);
-                case 3 -> agendarConsulta(scanner, pacientes, medicos);
+                case 2 -> Medico.cadastrarMedico(scanner, medicos);
+                case 3 -> Consulta.agendarConsulta(scanner, pacientes, medicos);
                 case 4 -> internarOuDarAlta(scanner, pacientes, medicos, internacoes);
                 case 5 -> exibirRelatorios(pacientes, medicos, internacoes);
                 case 0 -> System.out.println("Saindo do sistema...");
@@ -61,31 +60,7 @@ public class Main {
 
 
     //Segunda função: Cadastro de médicos
-    private static void cadastrarMedico(Scanner scanner, ArrayList<Medico> medicos) {
-        System.out.print("Digite o nome do médico: ");
-        String nome = scanner.nextLine();
-
-        System.out.print("Digite a especialidade do médico: ");
-        String especialidade = scanner.nextLine();
-
-        System.out.print("Digite o CRM do médico: ");
-        int crm = scanner.nextInt();
-
-        System.out.print("Digite o custo da consulta: ");
-        double custoConsulta = scanner.nextDouble();
-        scanner.nextLine();
-
-        medicos.add(new Medico(nome, especialidade, crm, custoConsulta));
-        System.out.println("Médico cadastrado com sucesso!");
-
-        // Salvar médicos
-        List<String> linhasMedicos = new ArrayList<>();
-        for (Medico m : medicos) {
-            linhasMedicos.add(m.toCSV());
-        }
-        ArquivoUtils.salvarEmCSV("docs/medicos.csv", linhasMedicos);
-    }
-
+    
     //Terceira função: Exibição de relatórios
     private static void exibirRelatorios(ArrayList<Paciente> pacientes, ArrayList<Medico> medicos, ArrayList<Internacao> internacoes) {
         System.out.println("\nRelatório de Pacientes:");
@@ -106,45 +81,7 @@ public class Main {
     }
 
     //Quarta função: Agendamento de consultas
-    private static void agendarConsulta(Scanner scanner, ArrayList<Paciente> pacientes, ArrayList<Medico> medicos) {
-        
-        //Se paciente está vazio ou médico está vazio
-        if (pacientes.isEmpty() || medicos.isEmpty()) {
-            System.out.println("É preciso ter pelo menos um paciente e um médico cadastrados para agendar.");
-            return;
-        }
-
-        // Escolher paciente
-        System.out.println("\nPacientes cadastrados:");
-        for (int i = 0; i < pacientes.size(); i++) {
-            System.out.println(i + " - " + pacientes.get(i).getNome());
-        }
-        System.out.print("Escolha o número do paciente: ");
-        int indicePaciente = scanner.nextInt();
-        scanner.nextLine();
-        Paciente paciente = pacientes.get(indicePaciente);
-
-        // escolher médico
-        System.out.println("\nMédicos cadastrados:");
-        for (int i = 0; i < medicos.size(); i++) {
-            System.out.println(i + " - " + medicos.get(i).getNome() + " (" + medicos.get(i).getEspecialidade() + ")");
-        }
-        System.out.print("Escolha o número do médico: ");
-        int indiceMedico = scanner.nextInt();
-        scanner.nextLine();
-        Medico medico = medicos.get(indiceMedico);
-
-        // escolher data/hora
-        System.out.print("Digite a data e hora da consulta (dd/MM/yyyy HH:mm): ");
-        String dataHoraStr = scanner.nextLine();
-        LocalDateTime horario = LocalDateTime.parse(dataHoraStr, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-
-        // criar consulta
-        Consulta consulta = new Consulta(paciente, medico, horario);
-        medico.adicionarConsulta(consulta);
-
-        System.out.println("Consulta agendada: " + paciente.getNome() + " com Dr(a). " + medico.getNome() + " em " + consulta.getHorarioFormatado());
-    }
+    
 
     private static void internarOuDarAlta(Scanner scanner, ArrayList<Paciente> pacientes, ArrayList<Medico> medicos, ArrayList<Internacao> internacoes) {
         System.out.println("\n=== Menu de Internação ===");

@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import main.utils.ArquivoUtils;
 
 public class Medico {
     private String nome;
@@ -79,5 +82,31 @@ public class Medico {
         double custo = Double.parseDouble(dados[3]);
         return new Medico(nome, especialidade, crm, custo);
     }
+
+    public static void cadastrarMedico(Scanner scanner, ArrayList<Medico> medicos) {
+        System.out.print("Digite o nome do médico: ");
+        String nome = scanner.nextLine();
+
+        System.out.print("Digite a especialidade do médico: ");
+        String especialidade = scanner.nextLine();
+
+        System.out.print("Digite o CRM do médico: ");
+        int crm = scanner.nextInt();
+
+        System.out.print("Digite o custo da consulta: ");
+        double custoConsulta = scanner.nextDouble();
+        scanner.nextLine();
+
+        medicos.add(new Medico(nome, especialidade, crm, custoConsulta));
+        System.out.println("Médico cadastrado com sucesso!");
+
+        // Salvar médicos
+        List<String> linhasMedicos = new ArrayList<>();
+        for (Medico m : medicos) {
+            linhasMedicos.add(m.toCSV());
+        }
+        ArquivoUtils.salvarEmCSV("docs/medicos.csv", linhasMedicos);
+    }
+
 
 }
