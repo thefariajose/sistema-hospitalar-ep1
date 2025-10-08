@@ -11,12 +11,17 @@ public class Paciente {
     private boolean possuiPlanoSaude;
     private double descontoPlano;
 
+    private List<Consulta> historicoConsultas;
+    private List<Internacao> historicoInternacoes;
+
     public Paciente(String nome, long cpf, int idade, boolean possuiPlanoSaude, double descontoPlano) {
         this.nome = nome;
         this.cpf = cpf;
         this.idade = idade;
         this.possuiPlanoSaude = possuiPlanoSaude;
         this.descontoPlano = possuiPlanoSaude ? descontoPlano : 0.0;
+        this.historicoConsultas = new ArrayList<>();
+        this.historicoInternacoes = new ArrayList<>();
     }
 
     // Getters e Setters
@@ -61,6 +66,22 @@ public class Paciente {
         if (possuiPlanoSaude) {
             this.descontoPlano = descontoPlano; 
         }
+    }
+
+    public List<Consulta> getHistoricoConsultas() { 
+        return historicoConsultas; 
+    }
+    
+    public List<Internacao> getHistoricoInternacoes() { 
+        return historicoInternacoes; 
+    }
+
+    public void adicionarConsulta(Consulta consulta) {
+        historicoConsultas.add(consulta);
+    }
+
+    public void adicionarInternacao(Internacao internacao) {
+        historicoInternacoes.add(internacao);
     }
 
     @Override

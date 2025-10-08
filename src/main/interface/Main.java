@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -65,18 +64,11 @@ public class Main {
             System.out.println("- " + m.getNome() + " | CRM: " + m.getCrm() + " | Especialidade: " + m.getEspecialidade());
         }
 
-        System.out.println("\n📋 Relatório de Internações:");
+        System.out.println("\nRelatório de Internações:");
         for (Internacao i : internacoes) {
             System.out.println("- " + i.getResumo());
         }
 
     }
-
-    //Quarta função: Agendamento de consultas
-    
-
-    
-
-
 
 }
