@@ -1,7 +1,15 @@
+package main.ui;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import main.utils.ArquivoUtils;
+import main.hospital.Internacao;
+import main.hospital.Consulta;
+import main.hospital.Medico;
+import main.hospital.Paciente;
+
+
 
 public class Main {
     public static void main(String[] args) {
@@ -28,13 +36,13 @@ public class Main {
             System.out.println("\nBem-vindo ao sistema do Hospital do Gama!");
             System.out.println("*****************************************");
             System.out.println("1. Cadastro de paciente");
-            System.out.println("2. Cadastro de médico");
+            System.out.println("2. Cadastro de medico");
             System.out.println("3. Agendar uma consulta");
-            System.out.println("4. Internação de paciente");
-            System.out.println("5. Exibir relatórios");
+            System.out.println("4. Internacao de paciente");
+            System.out.println("5. Exibir relatorios");
             System.out.println("0. Sair");
             System.out.println("*****************************************");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Escolha uma opcao: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
 
