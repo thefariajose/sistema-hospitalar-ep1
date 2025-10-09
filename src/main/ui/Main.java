@@ -38,7 +38,7 @@ public class Main {
             System.out.println("1. Cadastro de paciente");
             System.out.println("2. Cadastro de medico");
             System.out.println("3. Agendar uma consulta");
-            System.out.println("4. Internacao de paciente");
+            System.out.println("4. Internação de paciente");
             System.out.println("5. Exibir relatorios");
             System.out.println("0. Sair");
             System.out.println("*****************************************");
@@ -53,7 +53,7 @@ public class Main {
                 case 4 -> Internacao.internarOuDarAlta(scanner, pacientes, medicos, internacoes);
                 case 5 -> exibirRelatorios(pacientes, medicos, internacoes);
                 case 0 -> System.out.println("Saindo do sistema...");
-                default -> System.out.println("Opção inválida, tente novamente!");
+                default -> System.out.println("Opcao invalida, tente novamente!");
             }
 
         } while (opcao != 0);
@@ -62,17 +62,17 @@ public class Main {
     }
 
     private static void exibirRelatorios(ArrayList<Paciente> pacientes, ArrayList<Medico> medicos, ArrayList<Internacao> internacoes) {
-        System.out.println("\nRelatório de Pacientes:");
+        System.out.println("\nRelatorio de Pacientes:");
         for (Paciente p : pacientes) {
             System.out.println("- " + p.getNome() + " | CPF: " + p.getCpf() + " | Idade: " + p.getIdade());
         }
 
-        System.out.println("\nRelatório de Médicos:");
+        System.out.println("\nRelatorio de Medicos:");
         for (Medico m : medicos) {
             System.out.println("- " + m.getNome() + " | CRM: " + m.getCrm() + " | Especialidade: " + m.getEspecialidade());
         }
 
-        System.out.println("\nRelatório de Internações:");
+        System.out.println("\nRelatorio de Internacoes:");
         for (Internacao i : internacoes) {
             System.out.println("- " + i.getResumo());
         }

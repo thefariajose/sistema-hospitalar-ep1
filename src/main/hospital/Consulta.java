@@ -37,7 +37,7 @@ public class Consulta {
         
         //Se paciente está vazio ou médico está vazio
         if (pacientes.isEmpty() || medicos.isEmpty()) {
-            System.out.println("É preciso ter pelo menos um paciente e um médico cadastrados para agendar.");
+            System.out.println("E preciso ter pelo menos um paciente e um medico cadastrados para agendar.");
             return;
         }
 
@@ -46,17 +46,17 @@ public class Consulta {
         for (int i = 0; i < pacientes.size(); i++) {
             System.out.println(i + " - " + pacientes.get(i).getNome());
         }
-        System.out.print("Escolha o número do paciente: ");
+        System.out.print("Escolha o numero do paciente: ");
         int indicePaciente = scanner.nextInt();
         scanner.nextLine();
         Paciente paciente = pacientes.get(indicePaciente);
 
         // escolher médico
-        System.out.println("\nMédicos cadastrados:");
+        System.out.println("\nMedicos cadastrados:");
         for (int i = 0; i < medicos.size(); i++) {
             System.out.println(i + " - " + medicos.get(i).getNome() + " (" + medicos.get(i).getEspecialidade() + ")");
         }
-        System.out.print("Escolha o número do médico: ");
+        System.out.print("Escolha o número do medico: ");
         int indiceMedico = scanner.nextInt();
         scanner.nextLine();
         Medico medico = medicos.get(indiceMedico);

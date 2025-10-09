@@ -63,7 +63,7 @@ public class Medico {
 
     @Override
     public String toString() {
-        return "Médico{" +
+        return "Medico{" +
                 "nome='" + nome + '\'' +
                 ", especialidade='" + especialidade + '\'' +
                 ", CRM=" + crm +
@@ -86,13 +86,13 @@ public class Medico {
     }
 
     public static void cadastrarMedico(Scanner scanner, ArrayList<Medico> medicos) {
-        System.out.print("Digite o nome do médico: ");
+        System.out.print("Digite o nome do medico: ");
         String nome = scanner.nextLine();
 
-        System.out.print("Digite a especialidade do médico: ");
+        System.out.print("Digite a especialidade do medico: ");
         String especialidade = scanner.nextLine();
 
-        System.out.print("Digite o CRM do médico: ");
+        System.out.print("Digite o CRM do medico: ");
         int crm = scanner.nextInt();
 
         System.out.print("Digite o custo da consulta: ");
@@ -100,7 +100,7 @@ public class Medico {
         scanner.nextLine();
 
         medicos.add(new Medico(nome, especialidade, crm, custoConsulta));
-        System.out.println("Médico cadastrado com sucesso!");
+        System.out.println("Medico cadastrado com sucesso!");
 
         // Salvar médicos
         List<String> linhasMedicos = new ArrayList<>();

@@ -47,30 +47,30 @@ public class Internacao {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String entrada = dataEntrada.format(formatter);
         String saida = (dataSaida != null) ? dataSaida.format(formatter) : "Ainda internado";
-        return paciente.getNome() + " | Médico: " + medicoResponsavel.getNome() + 
+        return paciente.getNome() + " | Medico: " + medicoResponsavel.getNome() + 
                " | Quarto: " + numeroQuarto + 
                " | Entrada: " + entrada + 
                " | Saída: " + saida;
     }
 
     public static void internarOuDarAlta(Scanner scanner, ArrayList<Paciente> pacientes, ArrayList<Medico> medicos, ArrayList<Internacao> internacoes) {
-        System.out.println("\n=== Menu de Internação ===");
+        System.out.println("\n=== Menu de Internacao ===");
         System.out.println("1. Internar paciente");
         System.out.println("2. Dar alta a paciente");
-        System.out.print("Escolha uma opção: ");
+        System.out.print("Escolha uma opcao: ");
         int escolha = scanner.nextInt();
         scanner.nextLine();
 
         switch (escolha) {
             case 1 -> internarPaciente(scanner, pacientes, medicos, internacoes);
             case 2 -> darAltaPaciente(scanner, internacoes);
-            default -> System.out.println("Opção inválida!");
+            default -> System.out.println("Opcao invalida!");
         }
     }
 
     public static void internarPaciente(Scanner scanner, ArrayList<Paciente> pacientes, ArrayList<Medico> medicos, ArrayList<Internacao> internacoes) {
         if (pacientes.isEmpty() || medicos.isEmpty()) {
-            System.out.println("É preciso ter pelo menos um paciente e um médico cadastrados para internação.");
+            System.out.println("E preciso ter pelo menos um paciente e um medico cadastrados para internacao.");
             return;
         }
 
@@ -79,23 +79,23 @@ public class Internacao {
         for (int i = 0; i < pacientes.size(); i++) {
             System.out.println(i + " - " + pacientes.get(i).getNome());
         }
-        System.out.print("Escolha o número do paciente: ");
+        System.out.print("Escolha o numero do paciente: ");
         int indicePaciente = scanner.nextInt();
         scanner.nextLine();
         Paciente paciente = pacientes.get(indicePaciente);
 
         // Escolher médico
-        System.out.println("\nMédicos cadastrados:");
+        System.out.println("\nMedicos cadastrados:");
         for (int i = 0; i < medicos.size(); i++) {
             System.out.println(i + " - " + medicos.get(i).getNome() + " (" + medicos.get(i).getEspecialidade() + ")");
         }
-        System.out.print("Escolha o número do médico responsável: ");
+        System.out.print("Escolha o numero do medico responsavel: ");
         int indiceMedico = scanner.nextInt();
         scanner.nextLine();
         Medico medico = medicos.get(indiceMedico);
 
         // Definir quarto
-        System.out.print("Digite o número do quarto: ");
+        System.out.print("Digite o numero do quarto: ");
         int quarto = scanner.nextInt();
         scanner.nextLine();
 
@@ -105,7 +105,7 @@ public class Internacao {
         Internacao internacao = new Internacao(paciente, medico, quarto, dataEntrada);
         internacoes.add(internacao);
 
-        System.out.println("Internação registrada para o paciente " + paciente.getNome() + " no quarto " + quarto);
+        System.out.println("Internacao registrada para o paciente " + paciente.getNome() + " no quarto " + quarto);
 
         paciente.adicionarInternacao(new Internacao(paciente, medico, quarto, dataEntrada));
     }
@@ -128,7 +128,7 @@ public class Internacao {
             System.out.println(i + " - " + abertas.get(i).getPaciente().getNome() + 
                            " (Quarto " + abertas.get(i).getNumeroQuarto() + ")");
     }
-        System.out.print("Escolha o número do paciente para dar alta: ");
+        System.out.print("Escolha o numero do paciente para dar alta: ");
         int indice = scanner.nextInt();
         scanner.nextLine();
 
