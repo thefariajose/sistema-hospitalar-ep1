@@ -104,6 +104,8 @@ public class Internacao {
         internacoes.add(internacao);
 
         System.out.println("Internação registrada para o paciente " + paciente.getNome() + " no quarto " + quarto);
+
+        paciente.adicionarInternacao(new Internacao(paciente, medico, quarto, dataEntrada));
     }
 
     public static void darAltaPaciente(Scanner scanner, ArrayList<Internacao> internacoes) {

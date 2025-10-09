@@ -69,5 +69,7 @@ public class Consulta {
         medico.adicionarConsulta(consulta);
 
         System.out.println("Consulta agendada: " + paciente.getNome() + " com Dr(a). " + medico.getNome() + " em " + consulta.getHorarioFormatado());
+
+        paciente.adicionarConsulta(new Consulta(paciente, medico,horario));
     }
 }
